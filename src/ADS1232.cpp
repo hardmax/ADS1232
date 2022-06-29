@@ -140,14 +140,14 @@ ERROR_t ADS1232::read(long& value, bool Calibrating)
     while(digitalRead(_pin_DOUT) != HIGH)
     {
         if(millis()-start > waitingTime) return TIMEOUT_HIGH; // Timeout waiting for HIGH
-        delay(0);
+        delay(1);
     }
 
     start=millis();
     while(digitalRead(_pin_DOUT) != LOW)
     {
         if(millis()-start > waitingTime) return TIMEOUT_LOW; // Timeout waiting for LOW
-        delay(0);
+        delay(1);
     }
 
     // Read 24 bits
@@ -210,7 +210,7 @@ ERROR_t ADS1232::read_average(float& value, byte times, bool Calibrating) {
 		err = read(val, Calibrating);
 		if(err!=NoERROR) return err;
 		sum += val;
-		delay(0);
+		delay(1);
 	}
 	if(times==0) return DIVIDED_by_ZERO;
 	value = (float)sum / times;
