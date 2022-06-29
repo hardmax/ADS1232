@@ -222,7 +222,7 @@ ERROR_t ADS1232::get_value(float& value, byte times, bool Calibrating) {
 	ERROR_t err;
 	err = read_average(val, times, Calibrating);
 	if(err!=NoERROR) return err;
-	value = val - OFFSET[0];
+	value = val - OFFSET;
 	return NoERROR;
 }
 
@@ -231,8 +231,8 @@ ERROR_t ADS1232::get_units(float& value, byte times, bool Calibrating) {
 	ERROR_t err;
 	err = get_value(val, times, Calibrating);
 	if(err!=NoERROR) return err;
-	if(SCALE[0]==0) return DIVIDED_by_ZERO;
-	value = val / SCALE[0];
+	if(SCALE==0) return DIVIDED_by_ZERO;
+	value = val / SCALE;
 	return NoERROR;
 }
 
@@ -246,17 +246,17 @@ ERROR_t ADS1232::tare(byte times, bool Calibrating) {
 }
 
 void ADS1232::set_scale(float scale) {
-	SCALE[0] = scale;
+	SCALE = scale;
 }
 
 float ADS1232::get_scale() {
-	return SCALE[0];
+	return SCALE;
 }
 
 void ADS1232::set_offset(float offset) {
-	OFFSET[0] = offset;
+	OFFSET = offset;
 }
 
 float ADS1232::get_offset() {
-	return OFFSET[0];
+	return OFFSET;
 }

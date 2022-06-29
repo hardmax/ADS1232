@@ -92,9 +92,9 @@ class ADS1232
 		int _pin_SCLK;
 		int _pin_PDWN;
 		int _pin_SPEED;
-	
-		float OFFSET[2] = {};	// used for tare weight
-		float SCALE[2] = {1,1};	// used to return weight in grams, kg, ounces, whatever
+
+		float OFFSET = 0;	// used for tare weight
+		float SCALE = 1;	// used to return weight in grams, kg, ounces, whatever
 	  
 		Speed _speed ;
 };
