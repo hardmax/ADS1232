@@ -176,6 +176,12 @@ ERROR_t ADS1232::read(long& value, bool Calibrating)
       delayMicroseconds(1);
       #endif
 		}
+     //Esperamos que termine calibracion para recien pedir el siguiente valor
+    if(_speed==FAST){
+      delay(100);
+    } else {
+      delay(800);
+    }
 	}
 	
     /* Bit 23 is acutally the sign bit. Shift by 8 to get it to the
