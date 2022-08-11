@@ -211,9 +211,11 @@ ERROR_t ADS1232::read_average(float& value, byte times, bool Calibrating) {
 
 	long sum = 0;
 	ERROR_t err;
+  long val;
+  //Mandamos calibrar pero no tomamos el dato leido porque este no esta calibrado, recien el dato siguiente es el correcto
+  if (Calibrating) read(val, true);
 	for (byte i = 0; i < times; i++) {
-		long val;
-		err = read(val, Calibrating);
+		err = read(val, false);
 		if(err!=NoERROR) return err;
 		sum += val;
 		delay(1);
